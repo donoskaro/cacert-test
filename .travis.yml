@@ -1,0 +1,26 @@
+language: bash
+dist: stretch
+
+env:
+    - CACERT=pr330.pem BACKEND=openssl-0.9.8e
+    - CACERT=pr330.pem BACKEND=openssl-0.9.8f
+    - CACERT=pr330.pem BACKEND=openssl-0.9.8j
+    - CACERT=pr330.pem BACKEND=openssl-1.0.1e
+    - CACERT=requests-php-60db37.pem BACKEND=openssl-0.9.8e
+    - CACERT=requests-php-60db37.pem BACKEND=openssl-0.9.8f
+    - CACERT=requests-php-60db37.pem BACKEND=openssl-0.9.8j
+    - CACERT=requests-php-60db37.pem BACKEND=openssl-1.0.1e
+    - CACERT=moz-20180407.pem BACKEND=openssl-0.9.8e
+    - CACERT=moz-20180407.pem BACKEND=openssl-0.9.8f
+    - CACERT=moz-20180407.pem BACKEND=openssl-0.9.8j
+    - CACERT=moz-20180407.pem BACKEND=openssl-1.0.1e
+    - CACERT=wordpress-4.9.5.pem BACKEND=openssl-0.9.8e
+    - CACERT=wordpress-4.9.5.pem BACKEND=openssl-0.9.8f
+    - CACERT=wordpress-4.9.5.pem BACKEND=openssl-0.9.8j
+    - CACERT=wordpress-4.9.5.pem BACKEND=openssl-1.0.1e
+
+install:
+    - bash backends/$BACKEND.sh build
+
+script:
+    - bash verify.sh
